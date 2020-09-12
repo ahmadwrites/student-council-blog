@@ -1,0 +1,46 @@
+{% extends 'blog/base.html'%}
+{% block content %}
+<!-- CARD SECTION -->
+<div class="container">
+    <!-- CARDS -->
+    <div class="row">
+        <div class="col-md-9">  <!-- Column for cards -->
+            <div class="my-card p-3 mt-2">
+                <h3>Inquiries? Suggestions? Compliments?</h3>
+                <p class="mt-4">I would love to hear some feedback, whether it be a mistake or bug in the site,
+                to actual writing criticism. Or maybe you want a blog just like mine?
+                    Don't feel shy, drop an email
+                    <a href = "mailto: ahmadhasnol@hotmail.com">here!</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-2">  <!-- Column for sidebar -->
+            <div class="find-me text-center">
+                <h4>Socialize</h4>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-github"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="find-me mt-4 text-center pb-4">
+                <h4 id="newsletter">Subscribe To Our Newsletter</h4>
+                <p>Receive automatic updates on our posts today! This service is free of
+                charge.
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button id="email-submit" class="btn btn-outline-primary btn-sm btn-block mt-2" type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="add-space">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDE BAR -->
+</div>
+{% endblock content %}

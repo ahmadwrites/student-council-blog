@@ -1,0 +1,67 @@
+{% extends 'blog/base.html'%}
+{% block content %}
+<!-- CARD SECTION -->
+<div class="container">
+    <!-- CARDS -->
+    <div class="row">
+        <div class="col-md-9">  <!-- Column for cards -->
+            <div class="my-card p-3 mt-2">
+                <img class="post-image mb-2" src="{{ post.image.url }}" alt="">
+                <h1>{{ post.title }}</h1>
+                <small>{{ post.date_posted|date:'d, F Y' }}</small>
+                <a style="border-radius:25px;" class="ml-1 mt-3 text-success btn btn-outline-success btn-sm" href=""><i class="fab fa-whatsapp"></i></a>
+                <a style="border-radius:25px;" class="ml-1 mt-3 text-primary btn btn-outline-primary btn-sm" href=""><i class="fab fa-facebook"></i></a>
+                <a style="border-radius:25px;" class="ml-1 mt-3 text-info btn btn-outline-info btn-sm" href=""><i class="fab fa-twitter"></i></a>
+                <p class="mt-2">{{ post.content|safe }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-2">  <!-- Column for sidebar -->
+            <div class="suggested-articles text-center">
+                <h4>Suggested Articles</h4>
+                {% for articles in other_articles %}
+                    <small><a href="{% url 'blog-detail' articles.slug %}">{{articles.title}}</a></small>
+                <br>
+                {% endfor %}
+            </div>
+
+            <div class="find-me text-center mt-4">
+                <h4>Socialize</h4>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-github"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="find-me mt-4 text-center pb-4">
+                <h4 id="newsletter">Subscribe To Our Newsletter</h4>
+                <p>Receive automatic updates on our posts today! This service is free of
+                charge.
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button id="email-submit" class="btn btn-outline-primary btn-sm btn-block mt-2" type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="add-space">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDE BAR -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $(window).scroll(function(){
+    var scroll = $(window).scrollTop(),
+    dh = $(document).height(),
+    wh = $(window).height();
+    scrollPercent =  ((scroll / (dh-wh)) * 200 )-10;
+    $('#progress').css('height', scrollPercent + '%');
+    })
+</script>
+{% endblock content %}
