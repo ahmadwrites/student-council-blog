@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post, Email
-from .forms import EmailForm
+from .forms import EmailForm, CommentForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -123,32 +123,28 @@ def contact(request):
 
 
 def details(request, slug):
-    if request.method == 'POST':
-        form = EmailForm(request.POST)
-        if form.is_valid():
-            form.save()
-            save_it = form.save(commit=False)
-            save_it.save()
-
-            message = 'Hello!\nThank you for subscribing to Ahmad\'s blog!'
-            subject = 'Subscription Confirmed!'
-            from_email = settings.EMAIL_HOST_USER
-            to_list = [save_it.email]
-
-            send_mail(subject, message, from_email, to_list, fail_silently=True)
-
-            messages.success(request, f'You have signed up for the newsletter!')
-            return redirect('blog-home')
-
-    else:
-        form = EmailForm()
-
     current_post = Post.objects.get(slug=slug)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)  # Take in the form and play with the model working with
+            comment.post = current_post  # comment (model).post
+            comment.author = request.user
+            comment.save()
+            messages.success(request, 'Your comment has been added')
+            return redirect('blog-detail', slug)
+    else:
+        form = CommentForm()
+
+    comments = current_post.comments.order_by('created')
+
     context = {
         'post': Post.objects.get(slug=slug),
         'other_articles': Post.objects.all().exclude(slug=current_post.slug).order_by('-date_posted')[0:3],
+        'title': current_post.title,
         'form': form,
-        'title': current_post.title
+        'comments': comments,
     }
 
     current_post.views += 1

@@ -62,9 +62,9 @@ body{
     width: 100%;
     align-items: center;
     text-align: center;
-    background: url('https://source.unsplash.com/user/erondu/1900x1080');
+    background: url("/static/bg1.jpeg") no-repeat fixed;
     background-position: cover;
-    background-size: center center;
+    background-size: 100% auto;
     z-index: -1;
     box-shadow: 4px 2px 7px 2px #f4f4f4;
 }
@@ -116,7 +116,6 @@ body{
 
 .my-card{
     border: 1px solid #f4f4f4;
-    height: 100%;
     box-shadow: 4px 2px 7px 2px #f4f4f4;
 }
 
@@ -154,7 +153,6 @@ body{
 
 .footer{
     box-shadow: 4px 2px 7px 2px #f4f4f4;
-
 }
 
 .post-image{
@@ -167,3 +165,40 @@ body{
     color: red;
 }
 
+.comment-section{
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.comment-form{
+    display: flex;
+}
+
+.comment-input{
+    flex: 3;
+}
+
+.comment-button{
+    margin-left: 0.5em;
+}
+
+.comments p{
+    padding: 0;
+    margin: 0;
+}
+
+.article-suggested{
+    width: 100%;
+    height: auto;
+}
+
+.suggested-cards{
+        border: 1px solid #f4f4f4;
+}
+
+.register-form-my ul{
+    display: none;
+}
+
+.login-form-my li{
+    list-style: none;
+}

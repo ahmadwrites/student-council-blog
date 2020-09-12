@@ -1,5 +1,5 @@
 from django import forms
-from .models import Email
+from .models import Email, Comment
 
 
 class EmailForm(forms.ModelForm):
@@ -20,3 +20,12 @@ class EmailForm(forms.ModelForm):
             raise forms.ValidationError('This email already exists.')
 
         return email
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control',
+                                     'placeholder': 'Add your comment here', 'type': 'text'}))
+
+    class Meta:
+        model = Comment
+        fields = ['text']

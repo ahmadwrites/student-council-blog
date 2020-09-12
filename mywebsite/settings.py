@@ -32,8 +32,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
     'django_cleanup',
     'ckeditor',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,3 +134,9 @@ EMAIL_HOST_USER = 'theanalystmy@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = 'lykyzvenqxhgefan'
 EMAIL_PORT = 587
+
+# Crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Login redirect
+LOGIN_REDIRECT_URL = 'blog-home'
