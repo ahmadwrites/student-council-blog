@@ -23,9 +23,9 @@
                 <img class="post-image mb-2" src="{{ post.image.url }}" alt="">
                 <h1>{{ post.title }}</h1>
                 <small>{{ post.date_posted|date:'d, F Y' }}</small>
-                <a style="border-radius:25px;" class="ml-1 mt-3 text-success btn btn-outline-success btn-sm" href=""><i class="fab fa-whatsapp"></i></a>
-                <a style="border-radius:25px;" class="ml-1 mt-3 text-primary btn btn-outline-primary btn-sm" href=""><i class="fab fa-facebook"></i></a>
-                <a style="border-radius:25px;" class="ml-1 mt-3 text-info btn btn-outline-info btn-sm" href=""><i class="fab fa-twitter"></i></a>
+                <a target="_blank" style="border-radius:25px;" class="ml-1 mt-3 text-success btn btn-outline-success btn-sm" href="https://api.whatsapp.com/send?phone=whatsappphonenumber&text=http://xmumsc.herokuapp.com{% url 'blog-detail' post.slug %}"><i class="fab fa-whatsapp"></i></a>
+                <a target="_blank" style="border-radius:25px;" class="ml-1 mt-3 text-primary btn btn-outline-primary btn-sm" href="https://www.facebook.com/sharer/sharer.php?u=http://xmumsc.herokuapp.com{% url 'blog-detail' post.slug %}"><i class="fab fa-facebook"></i></a>
+                <a target="_blank" style="border-radius:25px;" class="ml-1 mt-3 text-info btn btn-outline-info btn-sm" href="http://twitter.com/share?text=&url=http://xmumsc.herokuapp.com{% url 'blog-detail' post.slug %}&hashtags="><i class="fab fa-twitter"></i></a>
                 <p class="mt-2">{{ post.content|safe }}</p>
                 <small class="text-muted">Tag: <a class="topic" href="{% url 'blog-topics' post.topic %}">{{post.topic}}</a></small>
             </div>
