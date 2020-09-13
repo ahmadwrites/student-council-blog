@@ -48,7 +48,7 @@ class About(models.Model):
         return self.title
 
 
-class Announcements(models.Model):
+class Announcement(models.Model):
     title = models.CharField(blank=True, max_length=255)
     date_posted = models.DateTimeField(default=timezone.now, editable=False)
 

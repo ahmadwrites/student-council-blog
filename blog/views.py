@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, Announcements, About
+from .models import Post, Announcement, About
 from .forms import EmailForm, CommentForm
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -31,7 +31,7 @@ def home(request):
         'posts': Post.objects.all().order_by('-date_posted')[0:4],
         'form': form,
         'title': 'Home',
-        'announcements': Announcements.objects.all().order_by('-date_posted')[0:3]
+        'announcements': Announcement.objects.all().order_by('-date_posted')[0:3]
     }
 
     return render(request, 'blog/home.html', context)

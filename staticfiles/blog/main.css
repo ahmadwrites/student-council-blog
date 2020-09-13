@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+/* NAVIGATION BAR */
+.navbar{
+    padding: 1.3em;
+    padding-right: 2.2em;
+    padding-left: 2.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px 2px #f4f4f4;
+
+}
+
+.logo{
+    font-size: 1.3em;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+}
+
+.logo:hover{
+    text-decoration: none;
+    color: #000;
+}
+
+.links{
+
+}
+
+.links a{
+    font-weight: 100;
+    font-size: 1em;
+    margin-right: 1em;
+    text-decoration: none;
+    color: #000;
+}
+
+/* MAIN SECTION */
+.main-section{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    background: url("/static/xiamen.jpg") no-repeat fixed;
+    background-position: cover;
+    background-size: 100% 100%;
+    z-index: -1;
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.main-card{
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    align-items: center;
+    padding: 4em;
+    justify-content: center;
+}
+
+.main-title{
+    color: #000;
+    text-decoration: none;
+}
+
+
+.main-card h3, a{
+    color: #3894e6;
+    margin-bottom: 1em;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.main-card a:hover{
+    text-decoration: none;
+}
+
+.main-card h1{
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.main-title:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.main-card h4{
+    font-weight: 300;
+    color: grey;
+}
+
+/* CARDS SECTION */
+.container{
+    padding-top: 2.5em;
+}
+
+.my-card{
+    border: 1px solid #f4f4f4;
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.my-card-image img{
+    max-height: 200px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.my-card-heading{
+    padding: 1em;
+}
+
+.my-card-body{
+    padding: 1em;
+}
+
+.find-me{
+    border: 1px solid #f4f4f4;
+    padding: 1em;
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.find-me a{
+    font-size: 1.3em;
+    letter-spacing: 0.5em;
+}
+
+.suggested-articles{
+    border: 1px solid #f4f4f4;
+    padding: 1em;
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.footer{
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.post-image{
+    width: 100%;
+    height: auto;
+}
+
+.errorlist li{
+    list-style: none;
+    color: red;
+}
+
+.comment-section{
+    box-shadow: 4px 2px 7px 2px #f4f4f4;
+}
+
+.comment-form{
+    display: flex;
+}
+
+.comment-input{
+    flex: 3;
+}
+
+.comment-button{
+    margin-left: 0.5em;
+}
+
+.comments p{
+    padding: 0;
+    margin: 0;
+}
+
+.article-suggested{
+    width: 100%;
+    height: auto;
+}
+
+.suggested-cards{
+        border: 1px solid #f4f4f4;
+}
+
+.register-form-my ul{
+    display: none;
+}
+
+.login-form-my li{
+    list-style: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .anN{
+        word-break: break-all;
+    }
+
+}
+
+@media only screen and (max-width: 463px) {
+    .main-section{
+        display: none;
+        justify-content: center;
+        height: 50vh;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        background: url("/static/xiamen.jpg") no-repeat fixed;
+        background-position: cover;
+        background-size: 100% 100%;
+        z-index: -1;
+        box-shadow: 4px 2px 7px 2px #f4f4f4;
+    }
+
+    .main-card{
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.8);
+        align-items: center;
+        padding: 1em;
+        justify-content: center;
+    }
+
+    .main-title{
+        color: #000;
+        text-decoration: none;
+    }
+
+
+    .main-card h3, a{
+        color: #3894e6;
+        margin-bottom: 1em;
+        font-size: 1em;
+        text-decoration: none;
+    }
+
+    .my-card-body{
+    display: none;
+    }
+}

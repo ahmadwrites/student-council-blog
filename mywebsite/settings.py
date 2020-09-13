@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from .aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mbfhrx27=!xaay_71wwxavicey@xpis(l@0*e2&10c123cqj*j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['xmumsc.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'django_cleanup',
     'ckeditor',
+    'storages',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -144,3 +147,20 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Login redirect
 LOGIN_REDIRECT_URL = 'blog-home'
+
+
+# AWS S3 Stuff
+AWS_ACCESS_KEY_ID = 'AKIAZJN73NTXNBWV4XUU'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'xmum-cs'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = 'public-read'
+DEFAULT_FILE_STORAGE = 'mywebsite.aws.storage_backends.MediaStorage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_QUERYSTRING_AUTH = False
+
+CKEDITOR_UPLOAD_PATH = 'media'
+AWS_S3_REGION = 'ap-southeast-1'
