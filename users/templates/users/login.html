@@ -1,0 +1,55 @@
+{% extends 'blog/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- CARD SECTION -->
+<div class="container">
+    <!-- CARDS -->
+    <div class="row">
+        <div class="col-md-9">  <!-- Column for cards -->
+            <div class="my-card p-3 mt-2">
+                {% if user.is_authenticated %}
+                <h4>Welcome back, {{ user.username }}</h4>
+                <p>Silly... You are already logged in!</p>
+                {% else %}
+                <h3>Login</h3>
+                <hr>
+                <div class="login-form-my">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-outline-primary mb-3">Sign Up</button>
+                    </form>
+                </div>
+                <small>
+                    Need an account? <a href="{% url 'register' %}">Register</a> here.
+                </small>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-2">  <!-- Column for sidebar -->
+            <div class="find-me text-center">
+                <h4>Socialize</h4>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-github"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="suggested-articles text-center mt-4">
+                <h4>Found a bug?</h4>
+                <p>Contact us <a href="{% url 'blog-contact'%}">here</a>. We appreciate
+                all types of feedback and would love to hear how we could improve our site!
+                </p>
+            </div>
+
+            <div class="add-space">
+                <!-- FOR ADVERTISEMENTS -->
+            </div>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <br><br>
+    {% endif %}
+</div>
+{% endblock content %}
