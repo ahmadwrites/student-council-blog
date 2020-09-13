@@ -1,14 +1,31 @@
 {% extends 'blog/base.html'%}
+
+{% block header %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{% url 'blog-home' %}">
+<meta name="twitter:title" content="Xiamen University Malaysia Student Council">
+<meta name="twitter:description" content="Xiamen University Malaysia Student Council page for all things related to
+XMUM's student council.">
+<meta name="twitter:image" content="">
+
+<meta property="og:url" content="{% url 'blog-home' %}" />
+<meta property="og:type" content="Xiamen University Malaysia Student Council" />
+<meta property="og:title" content="Xiamen University Malaysia Student Council" />
+<meta property="og:description" content="Xiamen University Malaysia Student Council page for all things related to
+XMUM's student council." />
+<meta property="og:image" content="" />
+{% endblock header %}
+
 {% block content %}
 <!-- MAIN BODY -->
 <section>
     <div class="main-section">
         <div class="main-card">
-            <h1><a class="main-title" href="#">Ahmad Hasnol</a></h1>
-            {% if user.is_authenticated and user.username != 'ahmadhasnol' %}
+            <h1><a class="main-title" href="#">Xiamen University Malaysia</a></h1>
+            {% if user.is_authenticated  %}
             <h4>Welcome, {{ user.username }}</h4>
             {% else %}
-            <h4>Programmer | Writer | Acrobat</h4>
+            <h4>Student Council News</h4>
             {% endif %}
         </div>
     </div>
@@ -45,12 +62,19 @@
         </div>
 
         <div class="col-md-3 mt-4">  <!-- Column for sidebar -->
-            <div class="find-me text-center">
+            <div class="find-me text-center ">
                 <h4>Socialize</h4>
-                <a href=""><i class="fab fa-instagram"></i></a>
-                <a href=""><i class="fab fa-youtube"></i></a>
-                <a href=""><i class="fab fa-github"></i></a>
-                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                <a target="_blank" href="https://www.instagram.com/ahmadlearns/"><i class="fab fa-instagram"></i></a>
+                <a target="_blank" href="https://www.youtube.com/watch?v=V8FXCt04cQs"><i class="fab fa-youtube"></i></a>
+                <a href="#!"><i class="fab fa-github"></i></a>
+                <a href="#!"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="suggested-articles text-center mt-4">
+                <h4 class="anN">Announcements</h4>
+                {%for announcement in announcements%}
+                  <li class="list-group-item border" style="border: 1px solid #f4f4f4;">{{announcement.title}}</li>
+                {%endfor%}
             </div>
 
             <div class="find-me mt-4 text-center pb-4">

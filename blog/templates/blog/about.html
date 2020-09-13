@@ -6,29 +6,26 @@
     <!-- CARDS -->
     <div class="row">
         <div class="col-md-9">  <!-- Column for cards -->
-            <div class="my-card mt-2 h-100">
-                <h3 class="p-3">Overcoming Average</h3>
-                <p class="pr-3 pl-3">Growing up, I went through an interesting childhood that allowed me to grow and experience
-                    challenges early on. This has led me to a series of months and years in mild social isolation.
-                    As a result, I have taken the route in learning new hobbies, interests and finding myself.
-                    This is a blog documenting my journey, thoughts and random stories that make me who I am today.
-                    <br><br>
-                    As of today, I am a developing full-stack programmer (this website was hardcoded from scratch
-                    by me), a self taught tricker/acrobat and a fitness enthusiast.
-                    My writings will be heavily inspired by my life and psychology/self development. Be sure to
-                    subscribe for automatic updates! For any inquiries, do contact me <a href="{% url 'blog-contact' %}">here.</a>
-                </p>
-                <iframe class="p-3" width="100%" height="362" src="https://www.youtube.com/embed/V8FXCt04cQs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="my-card mt-2">
+                <div class="p-3">
+                    <h1>{{about.title}}</h1>
+                    <p>{{about.content|safe}}</p>
+
+                    <small class="text-muted">This website was created by Ahmad Hasnol, a second year SWE student.
+                    If you have any feedback or wish to do business, do contact me
+                    <a href="{% url 'blog-contact' %}">here.</a>
+                    </small>
+                </div>
             </div>
         </div>
 
         <div class="col-md-3 mt-2">  <!-- Column for sidebar -->
             <div class="find-me text-center">
                 <h4>Socialize</h4>
-                <a href=""><i class="fab fa-instagram"></i></a>
-                <a href=""><i class="fab fa-youtube"></i></a>
-                <a href=""><i class="fab fa-github"></i></a>
-                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                <a target="_blank" href="https://www.instagram.com/ahmadlearns/"><i class="fab fa-instagram"></i></a>
+                <a target="_blank" href="https://www.youtube.com/watch?v=V8FXCt04cQs"><i class="fab fa-youtube"></i></a>
+                <a href="#!"><i class="fab fa-github"></i></a>
+                <a href="#!"><i class="fab fa-linkedin-in"></i></a>
             </div>
 
             <div class="find-me mt-4 text-center pb-4">

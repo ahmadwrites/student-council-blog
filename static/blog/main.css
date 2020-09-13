@@ -62,9 +62,9 @@ body{
     width: 100%;
     align-items: center;
     text-align: center;
-    background: url("/static/bg1.jpeg") no-repeat fixed;
+    background: url("/static/xiamen.jpg") no-repeat fixed;
     background-position: cover;
-    background-size: 100% auto;
+    background-size: 100% 100%;
     z-index: -1;
     box-shadow: 4px 2px 7px 2px #f4f4f4;
 }
@@ -201,4 +201,52 @@ body{
 
 .login-form-my li{
     list-style: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .anN{
+        word-break: break-all;
+    }
+
+}
+
+@media only screen and (max-width: 463px) {
+    .main-section{
+        display: none;
+        justify-content: center;
+        height: 50vh;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        background: url("/static/xiamen.jpg") no-repeat fixed;
+        background-position: cover;
+        background-size: 100% 100%;
+        z-index: -1;
+        box-shadow: 4px 2px 7px 2px #f4f4f4;
+    }
+
+    .main-card{
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.8);
+        align-items: center;
+        padding: 1em;
+        justify-content: center;
+    }
+
+    .main-title{
+        color: #000;
+        text-decoration: none;
+    }
+
+
+    .main-card h3, a{
+        color: #3894e6;
+        margin-bottom: 1em;
+        font-size: 1em;
+        text-decoration: none;
+    }
+
+    .my-card-body{
+    display: none;
+    }
 }

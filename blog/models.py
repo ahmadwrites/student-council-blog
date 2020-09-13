@@ -11,11 +11,11 @@ from mywebsite.utils import unique_slug_generator
 
 class Post(models.Model):
     TOPICS = (
-        ('Philosophy', 'Philosophy'),
-        ('Fitness', 'Fitness'),
-        ('Technology', 'Technology'),
+        ('General', 'General'),
+        ('Academics', 'Academics'),
+        ('Sports', 'Sports'),
         ('Lifestyle', 'Lifestyle'),
-        ('Politics', 'Politics'),
+        ('Events', 'Events'),
         ('Others', 'Others'),
     )
 
@@ -25,7 +25,7 @@ class Post(models.Model):
     content = RichTextField(blank=False)
     topic = models.CharField(max_length=20, choices=TOPICS, blank=False)
     image = models.ImageField(default='SOME STRING', upload_to='blog_image')
-    views = models.IntegerField(editable=False, default=0)
+    views = models.IntegerField(editable=True, default=0)
     slug = models.SlugField(max_length=200, null=True, blank=True)
 
     def __str__(self):
@@ -38,6 +38,22 @@ def slug_generator(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(slug_generator, sender=Post)
+
+
+class About(models.Model):
+    title = models.CharField(blank=True, max_length=255)
+    content = RichTextField()
+
+    def __str__(self):
+        return self.title
+
+
+class Announcements(models.Model):
+    title = models.CharField(blank=True, max_length=255)
+    date_posted = models.DateTimeField(default=timezone.now, editable=False)
+
+    def __str__(self):
+        return self.title
 
 
 def send_mails(sender, instance, **kwargs):

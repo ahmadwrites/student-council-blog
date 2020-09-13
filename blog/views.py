@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, Email
+from .models import Post, Announcements, About
 from .forms import EmailForm, CommentForm
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -30,7 +30,8 @@ def home(request):
     context = {
         'posts': Post.objects.all().order_by('-date_posted')[0:4],
         'form': form,
-        'title': 'Home'
+        'title': 'Home',
+        'announcements': Announcements.objects.all().order_by('-date_posted')[0:3]
     }
 
     return render(request, 'blog/home.html', context)
@@ -89,7 +90,8 @@ def about(request):
 
     context = {
         'form': form,
-        'title': 'About'
+        'title': 'About',
+        'about': About.objects.all().first()
     }
     return render(request, 'blog/about.html', context)
 
@@ -125,7 +127,8 @@ def contact(request):
 def details(request, slug):
     current_post = Post.objects.get(slug=slug)
 
-    if request.method == 'POST':
+    # COMMENTS FORM
+    if request.method == 'POST' and 'comment' in request.POST:
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)  # Take in the form and play with the model working with
@@ -139,11 +142,33 @@ def details(request, slug):
 
     comments = current_post.comments.order_by('created')
 
+    # EMAIL NEWSLETTER FORM
+    if request.method == 'POST':
+        e_form = EmailForm(request.POST)
+        if e_form.is_valid():
+            e_form.save()
+            save_it = e_form.save(commit=False)
+            save_it.save()
+
+            message = 'Hello!\nThank you for subscribing to Ahmad\'s blog!'
+            subject = 'Subscription Confirmed!'
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [save_it.email]
+
+            send_mail(subject, message, from_email, to_list, fail_silently=True)
+
+            messages.success(request, f'You have signed up for the newsletter!')
+            return redirect('blog-detail', slug)
+
+    else:
+        e_form = EmailForm()
+
     context = {
         'post': Post.objects.get(slug=slug),
         'other_articles': Post.objects.all().exclude(slug=current_post.slug).order_by('-date_posted')[0:3],
         'title': current_post.title,
         'form': form,
+        'e_form': e_form,
         'comments': comments,
     }
 

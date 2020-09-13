@@ -1,4 +1,18 @@
 {% extends 'blog/base.html'%}
+{% block header %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{% url 'blog-detail' post.slug%}">
+<meta name="twitter:title" content="{{post.title}}">
+<meta name="twitter:description" content="{{post.description|truncatechars:25}}">
+<meta name="twitter:image" content="{{ post.image.url }}">
+
+<meta property="og:url" content="{% url 'blog-detail' post.slug%}" />
+<meta property="og:type" content="post.content" />
+<meta property="og:title" content="{{post.title}}" />
+<meta property="og:description" content="{{post.description|truncatechars:25}}" />
+<meta property="og:image" content="{{ post.image.url }}" />
+{% endblock header %}
+
 {% block content %}
 <!-- CARD SECTION -->
 <div class="container">
@@ -13,6 +27,7 @@
                 <a style="border-radius:25px;" class="ml-1 mt-3 text-primary btn btn-outline-primary btn-sm" href=""><i class="fab fa-facebook"></i></a>
                 <a style="border-radius:25px;" class="ml-1 mt-3 text-info btn btn-outline-info btn-sm" href=""><i class="fab fa-twitter"></i></a>
                 <p class="mt-2">{{ post.content|safe }}</p>
+                <small class="text-muted">Tag: <a class="topic" href="{% url 'blog-topics' post.topic %}">{{post.topic}}</a></small>
             </div>
 
             <div class="comment-section mt-3 p-3">
@@ -26,7 +41,7 @@
                             {{form}}
                         </div>
                         <div class="comment-button">
-                            <button type="submit" class="btn btn-outline-primary">Submit</button>
+                            <button name="comment" type="submit" class="btn btn-outline-primary">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -50,8 +65,16 @@
         </div>
 
         <div class="col-md-3 mt-2">  <!-- Column for sidebar -->
-            <div class="suggested-articles text-center">
-                <h4>Suggested Articles</h4>
+            <div class="find-me text-center">
+                <h4>Socialize</h4>
+                <a target="_blank" href="https://www.instagram.com/ahmadlearns/"><i class="fab fa-instagram"></i></a>
+                <a target="_blank" href="https://www.youtube.com/watch?v=V8FXCt04cQs"><i class="fab fa-youtube"></i></a>
+                <a href="#!"><i class="fab fa-github"></i></a>
+                <a href="#!"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="suggested-articles text-center mt-4">
+                <h4>Latest Articles</h4>
                 {% for articles in other_articles %}
                 <div class="suggested-cards mt-3">
                     <a href="{% url 'blog-detail' articles.slug %}">
@@ -62,12 +85,16 @@
                 {% endfor %}
             </div>
 
-            <div class="find-me text-center mt-4">
-                <h4>Socialize</h4>
-                <a href=""><i class="fab fa-instagram"></i></a>
-                <a href=""><i class="fab fa-youtube"></i></a>
-                <a href=""><i class="fab fa-github"></i></a>
-                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            <div class="find-me mt-4 text-center pb-4">
+                <h4 id="newsletter">Subscribe To Our Newsletter</h4>
+                <p>Receive automatic updates on our posts today! This service is free of
+                charge.
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{e_form.as_p}}
+                    <button name="newsletter" id="email-submit" class="btn btn-outline-primary btn-sm btn-block mt-2" type="submit">Subscribe</button>
+                </form>
             </div>
 
             <!-- FOR ADVERTISEMENTS -->
@@ -79,16 +106,5 @@
 
     <!-- SIDE BAR -->
 </div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script type="text/javascript">
-    $(window).scroll(function(){
-    var scroll = $(window).scrollTop(),
-    dh = $(document).height(),
-    wh = $(window).height();
-    scrollPercent =  ((scroll / (dh-wh)) * 200 )-10;
-    $('#progress').css('height', scrollPercent + '%');
-    })
-</script>
 {% endblock content %}
 

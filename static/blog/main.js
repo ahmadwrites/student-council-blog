@@ -4,24 +4,24 @@ const topic = document.querySelectorAll('.topic');
 const searchArticle = document.getElementById('search-article');
 
 topic.forEach(tag => {
-    if(tag.textContent === 'Politics'){
+    if(tag.textContent === 'Sports'){
         tag.className = 'text-danger'
     }
 
-    else if(tag.textContent === 'Lifestyle'){
+    else if(tag.textContent === 'General'){
         tag.className = 'text-success'
     }
 
-    else if(tag.textContent === 'Fitness'){
+    else if(tag.textContent === 'Events'){
         tag.className = 'text-info'
     }
 
-    else if(tag.textContent === 'Technology'){
+    else if(tag.textContent === 'Academics'){
         tag.className = 'text-primary'
     }
 
-    else if(tag.textContent === 'Philosophy'){
-        tag.className = 'text-secondary'
+    else if(tag.textContent === 'Lifestyle'){
+        tag.style.color = 'brown'
     }
 
     else{
