@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mbfhrx27=!xaay_71wwxavicey@xpis(l@0*e2&10c123cqj*j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['xmumsc.herokuapp.com', '127.0.0.1', 'localhost']
 
@@ -154,17 +154,17 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 
 # AWS S3 Stuff
-AWS_ACCESS_KEY_ID = 'AKIAZJN73NTXNBWV4XUU'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'xmum-cs'
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = 'public-read'
-DEFAULT_FILE_STORAGE = 'mywebsite.aws.storage_backends.MediaStorage'
-
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_QUERYSTRING_AUTH = False
-
-CKEDITOR_UPLOAD_PATH = 'media'
-AWS_S3_REGION = 'ap-southeast-1'
+# AWS_ACCESS_KEY_ID = 'AKIAZJN73NTXNBWV4XUU'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'xmum-cs'
+#
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = 'public-read'
+# DEFAULT_FILE_STORAGE = 'mywebsite.aws.storage_backends.MediaStorage'
+#
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+# AWS_QUERYSTRING_AUTH = False
+#
+# CKEDITOR_UPLOAD_PATH = 'media'
+# AWS_S3_REGION = 'ap-southeast-1'
