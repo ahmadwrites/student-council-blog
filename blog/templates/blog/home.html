@@ -1,4 +1,5 @@
 {% extends 'blog/base.html'%}
+{% load static %}
 
 {% block header %}
 <meta name="twitter:card" content="summary_large_image">
@@ -17,19 +18,46 @@ XMUM's student council." />
 {% endblock header %}
 
 {% block content %}
+
 <!-- MAIN BODY -->
-<section>
-    <div class="main-section">
-        <div class="main-card">
-            <h1><a class="main-title" href="#">Xiamen University Malaysia</a></h1>
-            {% if user.is_authenticated  %}
-            <h4>Welcome, {{ user.username }}</h4>
-            {% else %}
-            <h4>Student Council News</h4>
-            {% endif %}
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- SLIDE 1 -->
+          <div class="swiper-slide">
+             <div class="text-center main-section">
+                 <div class="main-card">
+                     <h1 class="main-title">Xiamen University Malaysia</h1>
+                     <h3>Student Council Home Page</h3>
+                 </div>
+             </div>
+          </div>
+
+            <!-- SLIDE 2 -->
+            <div class="swiper-slide">
+                <div class="text-center main-section-3">
+                     <div class="main-card">
+                         <h1 class="main-title">We're Currently Hiring!</h1>
+                         <h3>Have What It Takes? <a href="{% url 'blog-contact' %}">Apply Now!</a></h3>
+                     </div>
+                 </div>
+          </div>
+
+            <!-- SLIDE 3 -->
+
+            <div class="swiper-slide">
+                <div class="text-center main-section-2">
+                     <div class="main-card">
+                         <h1 class="main-title">Looking For Study Tips?</h1>
+                         <h3>You've Come to the Right Place!</h3>
+                     </div>
+                 </div>
+          </div>
+
         </div>
+        <!-- Add Arrows -->
+
+         <div class="swiper-pagination"></div>
     </div>
-</section>
 
 <!-- CARD SECTION -->
 <div class="container">
@@ -97,6 +125,24 @@ XMUM's student council." />
 
     <!-- SIDE BAR -->
 </div>
+
+    <script src="{% static 'blog/swiper.min.js' %}"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+            delay: 2500,
+            disableOnInteraction: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination: {
+            el: '.swiper-pagination',
+          },
+        });
+    </script>
 {% endblock content %}
 
 

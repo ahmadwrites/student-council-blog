@@ -2,7 +2,12 @@ const emailInput = document.getElementById('email-input');
 const emailSubmit = document.getElementById('email-submit');
 const topic = document.querySelectorAll('.topic');
 const searchArticle = document.getElementById('search-article');
+const confirmation = document.getElementById('confirmation');
+const passOne = document.getElementById('id_password1');
+const signUp = document.getElementById('sign-up-today');
+const mybutton = document.getElementById("myBtn");
 
+// TOPIC COLORS
 topic.forEach(tag => {
     if(tag.textContent === 'Sports'){
         tag.className = 'text-danger'
@@ -29,7 +34,33 @@ topic.forEach(tag => {
     }
 });
 
+// CONFIRMATION
+if(passOne){
+    passOne.addEventListener('input', (e) => {
+    confirmation.value = e.target.value;
+});
+}
 
+if(mybutton){
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+}
+
+// EMAIL VALIDATION
 emailSubmit.addEventListener('click', (e) => {
     if(validateEmail(emailInput.value)){
         emailInput.classList.add('border-success');
@@ -58,6 +89,7 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+// FILTER ARTICLES
 searchArticle.addEventListener('keyup', filterItems);
 var card = document.querySelectorAll('.col-md-6');
 
@@ -76,4 +108,3 @@ function filterItems(e){
     });
 
 }
-

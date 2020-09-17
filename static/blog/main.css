@@ -20,14 +20,12 @@ body{
 
 /* NAVIGATION BAR */
 .navbar{
-    padding: 1.3em;
     padding-right: 2.2em;
     padding-left: 2.2em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    box-shadow: 2px 2px 2px 2px #f4f4f4;
-
+    border-bottom: 2px solid #f4f4f4;
 }
 
 .logo{
@@ -43,18 +41,35 @@ body{
 }
 
 .links{
-
+    display: block;
 }
 
-.links a{
+.links-mobile{
+    display: none;
+}
+
+.links a, .links-mobile a{
     font-weight: 100;
     font-size: 1em;
     margin-right: 1em;
     text-decoration: none;
-    color: #000;
+    color: #02234e;
 }
 
-/* MAIN SECTION */
+.logo-1{
+    display: block;
+}
+
+.logo-2{
+    display: none;
+}
+
+/* HOME PAGE SHOWCASE */
+.slide-show{
+    background: url("/static/xiamen.jpg") no-repeat ;
+}
+
+/* HOME PAGE SHOWCASE */
 .main-section{
     display: flex;
     justify-content: center;
@@ -62,16 +77,44 @@ body{
     width: 100%;
     align-items: center;
     text-align: center;
-    background: url("/static/xiamen.jpg") no-repeat fixed;
+    background: url("/static/xiamen.jpg") no-repeat;
     background-position: cover;
     background-size: 100% 100%;
     z-index: -1;
-    box-shadow: 4px 2px 7px 2px #f4f4f4;
+
+}
+
+.main-section-2{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    background: url("/static/study.jpg") no-repeat;
+    background-position: cover;
+    background-size: 100% 100%;
+    z-index: -1;
+
+}
+
+.main-section-3{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    background: url("/static/apply.jpg") no-repeat;
+    background-position: cover;
+    background-size: 100% 100%;
+    z-index: -1;
+
 }
 
 .main-card{
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.95);
     align-items: center;
     padding: 4em;
     justify-content: center;
@@ -82,21 +125,38 @@ body{
     text-decoration: none;
 }
 
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 40px; /* Place the button at the bottom of the page */
+  right: 35px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  border-radius: 100px;
+  border: none;
+  color: #007bff;
+  outline: none;
+  padding: 0.3em;
+  background-color: Transparent;
+}
 
-.main-card h3, a{
+.main-card h3{
     color: #3894e6;
     margin-bottom: 1em;
-    font-size: 1em;
+    font-size: 1.3em;
+    font-family: serif;
     text-decoration: none;
 }
 
-.main-card a:hover{
-    text-decoration: none;
+.main-card a{
+    font-size: 1em;
+    color: #3894e6;
 }
 
 .main-card h1{
-    font-weight: 700;
+    font-weight: 400;
     font-size: 2em;
+    font-family: serif;
 }
 
 .main-title:hover{
@@ -134,6 +194,7 @@ body{
     padding: 1em;
 }
 
+/* FIND ME SIDEBAR */
 .find-me{
     border: 1px solid #f4f4f4;
     padding: 1em;
@@ -210,17 +271,52 @@ body{
 
 }
 
-@media only screen and (max-width: 463px) {
-    .main-section{
+/* TABLET VIEW */
+@media only screen and (max-width: 800px) {
+    .logo-1{
+        display:none;
+    }
+
+    .logo-2{
+        display: block;
+        width: 50%;
+
+    }
+
+    .links{
         display: none;
+    }
+
+    .links-mobile{
+        display: block;
+        font-size: 1.1em;
+        box-shadow: 4px 2px 7px 2px #f4f4f4;
+        border-radius: 10px;
+        padding: 0.5em;
+    }
+
+    .links-mobile a{
+        color: navy;
+    }
+
+    .navbar{
+        display: flex;
+        flex-direction: space-between;
+        justify-content: center;
+        border-bottom: 2px solid #f4f4f4;
+    }
+
+    .logo-mobile{
+        flex: 2;
+    }
+
+    .main-section, .main-section-2, .main-section-3{
+        display: flex;
         justify-content: center;
         height: 50vh;
         width: 100%;
         align-items: center;
         text-align: center;
-        background: url("/static/xiamen.jpg") no-repeat fixed;
-        background-position: cover;
-        background-size: 100% 100%;
         z-index: -1;
         box-shadow: 4px 2px 7px 2px #f4f4f4;
     }
@@ -233,20 +329,95 @@ body{
         justify-content: center;
     }
 
-    .main-title{
+    .main-card h1{
         color: #000;
         text-decoration: none;
+        font-size: 1.5em;
     }
 
-
-    .main-card h3, a{
+    .main-card h3{
         color: #3894e6;
         margin-bottom: 1em;
-        font-size: 1em;
+        font-size: 1.3em;
         text-decoration: none;
     }
 
     .my-card-body{
-    display: none;
+        display: none;
+        }
+}
+
+/* PHONE VIEW */
+@media only screen and (max-width: 463px) {
+    .logo-1{
+        display:none;
+    }
+
+    .logo-2{
+        display: block;
+        width: 80%;
+    }
+
+    .links{
+        display: none;
+    }
+
+    .links-mobile{
+        display: block;
+        font-size: 0.7em;
+        box-shadow: 4px 2px 7px 2px #f4f4f4;
+        border-radius: 10px;
+        padding: 0.5em;
+    }
+
+    .links-mobile a{
+        color: navy;
+    }
+
+    .navbar{
+        display: flex;
+        flex-direction: space-between;
+        justify-content: center;
+        border-bottom: 2px solid #f4f4f4;
+    }
+
+    .logo-mobile{
+        flex: 2;
+    }
+
+    .main-section, .main-section-2, .main-section-3{
+        display: flex;
+        justify-content: center;
+        height: 30vh;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        z-index: -1;
+        box-shadow: 4px 2px 7px 2px #f4f4f4;
+    }
+
+    .main-card{
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.8);
+        align-items: center;
+        padding: 0.9em;
+        justify-content: center;
+    }
+
+    .main-card h1{
+        color: #000;
+        text-decoration: none;
+        font-size: 1.3em;
+    }
+
+    .main-card h3{
+        color: #3894e6;
+        margin-bottom: 1em;
+        font-size: 0.8em;
+        text-decoration: none;
+    }
+
+    .my-card-body{
+        display: none;
     }
 }

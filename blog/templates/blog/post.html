@@ -31,6 +31,9 @@
             </div>
 
             <div class="comment-section mt-3 p-3">
+                <button onclick="topFunction()" id="myBtn" title="Go to top" class="">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
                 <h3>Comments...</h3>
                 {% if user.is_authenticated %}
                 <form method="POST">

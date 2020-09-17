@@ -11,14 +11,12 @@ class UserRegisterForm(UserCreationForm):
         model = User  # Going to save to this User model
         fields = ['username', 'email', 'password1', 'password2']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        del self.fields['password2']
-
 
 class PasswordForm(forms.ModelForm):
-    password = forms.CharField(label='Password (confirmation)', widget=forms.TextInput(attrs={'class': 'form-control',
-                                                                   'type': 'password'}))
+    password = forms.CharField(required=False, label='',
+                               widget=forms.TextInput(attrs={'id': 'confirmation',
+                                                                   'type': 'password',
+                                                             'style': 'display:none;'}))
 
     class Meta:
         model = Password
