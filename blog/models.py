@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from ckeditor.fields import RichTextField
 from mywebsite.utils import unique_slug_generator
-
+from django.contrib.auth.models import User
 
 class Post(models.Model):
     TOPICS = (
@@ -91,6 +91,8 @@ class Comment(models.Model):
     author = models.CharField(max_length=200)
     text = models.TextField()
     created = models.DateTimeField(default=timezone.now)
+    likes = models.ManyToManyField(User, related_name='like', default=None, blank=True)
+    like_count = models.IntegerField(default='0')
 
     def __str__(self):
         return self.text[0:10]

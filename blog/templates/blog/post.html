@@ -30,6 +30,7 @@
                 <small class="text-muted">Tag: <a class="topic" href="{% url 'blog-topics' post.topic %}">{{post.topic}}</a></small>
             </div>
 
+            <!-- COMMENT SECTION -->
             <div class="comment-section mt-3 p-3">
                 <button onclick="topFunction()" id="myBtn" title="Go to top" class="">
                     <i class="fas fa-chevron-up"></i>
@@ -56,11 +57,23 @@
                 <div class="comments mt-3 border border-light p-2">
                     <p>
                         <strong>{{ comment.author }}</strong>
-                        <small>{{ comment.created|date:'d F Y' }} -
+                        <small>
+                            {{ comment.created|date:'d/m/y' }} -
                             {{ comment.created|date:'G:i' }} {{comment.created|date:'A'}}
                         </small>
                     </p>
                     <p>{{ comment.text|linebreaks }}</p>
+                    <small>
+                        <span id="like_count_{{comment.id}}">{{comment.like_count}}</span>
+                        {% if user.is_authenticated %}
+                        <button id="like-button-{{comment.id}}" class="text-dark p-0 border-0 btn btn-outline-light" value="{{comment.id}}"><i class="far fa-thumbs-up"></i></button>
+                        {% else %}
+                        <a href="{% url 'login' %}"><button class="text-dark p-0 border-0 btn btn-outline-light" value="{{comment.id}}">
+                            <i class="far fa-thumbs-up"></i>
+                        </button> </a>
+                        {% endif %}
+
+                    </small>
                 </div>
                 {% endfor %}
 
@@ -109,5 +122,28 @@
 
     <!-- SIDE BAR -->
 </div>
+
+<script>
+    {% for comment in comments %}
+    $(document).on('click', '#like-button-{{comment.id}}', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'blog-like' %}',
+            data: {
+                commentid: $('#like-button-{{comment.id}}').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success: function(json){
+                document.getElementById('like_count_{{comment.id}}').innerHTML = json['result']
+            },
+            error: function(xhr, errmsg, err){
+
+            }
+        });
+    })
+    {% endfor %}
+</script>
 {% endblock content %}
 

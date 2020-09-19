@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect
-from .models import Post, Announcement, About
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Post, Announcement, About, Comment
 from .forms import EmailForm, CommentForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -29,6 +32,7 @@ def home(request):
 
     context = {
         'posts': Post.objects.all().order_by('-date_posted')[0:4],
+        'posts2': Post.objects.all().order_by('-date_posted')[0:3],
         'form': form,
         'title': 'Home',
         'announcements': Announcement.objects.all().order_by('-date_posted')[0:3]
@@ -140,10 +144,10 @@ def details(request, slug):
     else:
         form = CommentForm()
 
-    comments = current_post.comments.order_by('created')
+    comments = current_post.comments.order_by('-created')
 
     # EMAIL NEWSLETTER FORM
-    if request.method == 'POST':
+    if request.method == 'POST' and 'newsletter' in request.POST:
         e_form = EmailForm(request.POST)
         if e_form.is_valid():
             e_form.save()
@@ -210,3 +214,24 @@ def topics(request, topic):
     }
 
     return render(request, 'blog/topics.html', context)
+
+
+@login_required
+def like(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = int(request.POST.get('commentid'))
+        comment = get_object_or_404(Comment, id=id)
+
+        if comment.likes.filter(id=request.user.id).exists():
+            comment.likes.remove(request.user)
+            comment.like_count -= 1
+            result = comment.like_count
+            comment.save()
+        else:
+            comment.likes.add(request.user)
+            comment.like_count += 1
+            result = comment.like_count
+            comment.save()
+
+        return JsonResponse({'result': result})

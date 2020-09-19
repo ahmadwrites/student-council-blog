@@ -20,44 +20,39 @@ XMUM's student council." />
 {% block content %}
 
 <!-- MAIN BODY -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- SLIDE 1 -->
-          <div class="swiper-slide">
-             <div class="text-center main-section">
-                 <div class="main-card">
-                     <h1 class="main-title">Xiamen University Malaysia</h1>
-                     <h3>Student Council Home Page</h3>
-                 </div>
-             </div>
-          </div>
-
-            <!-- SLIDE 2 -->
-            <div class="swiper-slide">
-                <div class="text-center main-section-3">
-                     <div class="main-card">
-                         <h1 class="main-title">We're Currently Hiring!</h1>
-                         <h3>Have What It Takes? <a href="{% url 'blog-contact' %}">Apply Now!</a></h3>
-                     </div>
-                 </div>
-          </div>
-
-            <!-- SLIDE 3 -->
-
-            <div class="swiper-slide">
-                <div class="text-center main-section-2">
-                     <div class="main-card">
-                         <h1 class="main-title">Looking For Study Tips?</h1>
-                         <h3>You've Come to the Right Place!</h3>
-                     </div>
-                 </div>
-          </div>
-
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <!-- SLIDE 1 -->
+        <div class="swiper-slide">
+            <div class="text-center main-section">
+                <div class="main-card">
+                    <h1 class="main-title">Xiamen University Malaysia</h1>
+                    <h3>Student Council Home Page</h3>
+                </div>
+            </div>
         </div>
-        <!-- Add Arrows -->
-
-         <div class="swiper-pagination"></div>
+        <!-- SLIDE 2 -->
+        <div class="swiper-slide">
+            <div class="text-center main-section-3">
+                <div class="main-card">
+                    <h1 class="main-title">We're Currently Hiring!</h1>
+                    <h3>Have What It Takes? <a href="{% url 'blog-contact' %}">Apply Now!</a></h3>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 3 -->
+        <div class="swiper-slide">
+            <div class="text-center main-section-2">
+                <div class="main-card">
+                    <h1 class="main-title">Looking For Study Tips?</h1>
+                    <h3>You've Come to the Right Place!</h3>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Add Arrows -->
+    <div class="swiper-pagination"></div>
+</div>
 
 <!-- CARD SECTION -->
 <div class="container">
@@ -66,7 +61,7 @@ XMUM's student council." />
         <div class="col-md-9">  <!-- Column for cards -->
             <div class="row">  <!-- Each row has 2 cards -->
                 {% for post in posts %}
-                <div class="col-md-6 mt-4">
+                <div class="col-md-6 mt-4 cards-home-laptop">
                     <div class="my-card h-100">  <!-- Card -->
                         <div class="my-card-image">
                             <a href="{% url 'blog-detail' post.slug %}"><img src="{{ post.image.url }}"></a>
@@ -82,6 +77,25 @@ XMUM's student council." />
                         </div>
                         <div class="my-card-body">
                             {{ post.content|safe|truncatewords:30 }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% for post in posts2 %}
+                <!-- MOBILE CARDS VIEW -->
+                <div class="col-md-6 cards-home-mobile">
+                    <div class="mobile-card mt-3">
+                        <div class="mobile-card-image mr-2">
+                            <a href="{% url 'blog-detail' post.slug %}"><img src="{{ post.image.url }}" alt=""></a>
+                        </div>
+                        <div class="mobile-card-body p-1">
+                            <a class="text-dark" href="{% url 'blog-detail' post.slug %}"><h6>{{ post.title|truncatechars:40 }}</h6></a>
+                            <small>
+                                <i class="far fa-clock"> {{ post.date_posted|date:'d M' }} |
+                                    <a class="topic" href="{% url 'blog-topics' post.topic %}">{{ post.topic }}</a>
+                                </i>
+                            </small>
                         </div>
                     </div>
                 </div>
