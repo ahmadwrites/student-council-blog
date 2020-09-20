@@ -8,12 +8,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;
-}
-
 body{
     font-family: 'Roboto', sans-serif;
 }

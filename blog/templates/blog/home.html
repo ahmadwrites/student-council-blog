@@ -91,9 +91,9 @@ XMUM's student council." />
                         </div>
                         <div class="mobile-card-body p-1">
                             <a class="text-dark" href="{% url 'blog-detail' post.slug %}"><h6>{{ post.title|truncatechars:40 }}</h6></a>
-                            <small>
+                            <small class="text-muted">
                                 <i class="far fa-clock"> {{ post.date_posted|date:'d M' }} |
-                                    <a class="topic" href="{% url 'blog-topics' post.topic %}">{{ post.topic }}</a>
+                                    <a style="line-height:1.6;" class="topic" href="{% url 'blog-topics' post.topic %}">{{ post.topic }}</a>
                                 </i>
                             </small>
                         </div>

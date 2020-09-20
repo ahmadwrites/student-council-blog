@@ -227,11 +227,13 @@ def like(request):
             comment.likes.remove(request.user)
             comment.like_count -= 1
             result = comment.like_count
+            className = 'far fa-thumbs-up'
             comment.save()
         else:
             comment.likes.add(request.user)
             comment.like_count += 1
             result = comment.like_count
+            className = 'fas fa-thumbs-up'
             comment.save()
 
-        return JsonResponse({'result': result})
+        return JsonResponse({'result': result, 'className': className})
